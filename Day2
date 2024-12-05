@@ -1,0 +1,44 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include<climits>
+#include <algorithm>
+using namespace std;
+
+int find_no(int H[],int n,int A[],int m){
+        int max_score=0 ;
+        int best_no = INT_MAX;
+        for(int a=0;a<m;a++){
+            int score = 0;
+            for(int h=0;h<n;h++){
+                if(H[h] % A[a]==0)
+                    score++;
+                if(score > max_score ||(score == max_score && A[a]< best_no)){
+                    max_score = score;
+                    best_no = A[a];
+                }
+            }
+        }
+        return best_no;
+    }
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int t;
+    cin>>t;
+    while(t--){
+        int N,M;
+        cin>>N>>M;
+        int H[N] , A[M];
+        for(int i=0;i<N;i++){
+            cin>>H[i];
+        }
+        for(int j=0;j<M;j++){
+            cin>>A[j];
+        }
+        int result = find_no(H,N,A,M);
+        cout<<result<<endl;
+    }
+    return 0;
+}
