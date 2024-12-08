@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int T; 
+    cin >> T;
+    while (T > 0) {
+        int N;
+        cin >> N;
+        vector<int> arr(N);
+        int totalSum = 0;
+
+        for (int i = 0; i < N; i++) {
+            cin >> arr[i];
+            totalSum += arr[i];
+        }
+
+        int leftSum = 0;
+        bool found = false;
+
+        for (int i = 0; i < N; i++) {
+            int rightSum = totalSum - leftSum - arr[i];
+            if (leftSum == rightSum) {
+                cout << i << endl;
+                found = true;
+                break;
+            }
+            leftSum += arr[i];
+        }
+
+        if (!found) {
+            cout << "-1" << endl;
+        }
+
+        T--;
+    }
+    return 0;
+}
