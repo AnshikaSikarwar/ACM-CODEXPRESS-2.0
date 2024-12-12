@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        string s;
+        cin >> s;
+        int n = s.length();
+        bool modified = false;
+
+        for (int i = 0; i < n / 2; ++i) {
+            if (s[i] != 'a') {
+                s[i] = 'a';
+                modified = true;
+                break;
+            }
+        }
+
+        if (!modified) {
+            if (n > 1) {
+                s[n - 1] = 'b';
+            } else {
+                s = "-1";
+            }
+        }
+
+        cout << s << "\n";
+    }
+    return 0;
+}
