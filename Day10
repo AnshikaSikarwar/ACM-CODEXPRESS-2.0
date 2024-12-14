@@ -1,0 +1,36 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+using namespace std;
+
+int main() {
+    // Cumulative days until the start of each month (non-leap year)
+    unordered_map<string, int> month_to_days = {
+        {"JAN", 0}, {"FEB", 31}, {"MAR", 59}, {"APR", 90}, {"MAY", 120},
+        {"JUN", 151}, {"JUL", 181}, {"AUG", 212}, {"SEP", 243},
+        {"OCT", 273}, {"NOV", 304}, {"DEC", 334}
+    };
+
+    int T;
+    cin >> T; // Number of test cases
+    
+    while (T--) {
+        string date;
+        cin >> date; // Input date in DDMMM format
+
+        // Extract day and month
+        int DD = stoi(date.substr(0, 2)); // First two characters are the day
+        string MMM = date.substr(2);     // Remaining characters are the month
+
+        // Convert month to uppercase (if necessary)
+        for (auto &c : MMM) c = toupper(c);
+
+        // Compute the day of the year
+        int day_of_year = month_to_days[MMM] + DD;
+
+        // Output the result
+        cout << day_of_year << endl;
+    }
+
+    return 0;
+}
